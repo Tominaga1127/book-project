@@ -1,3 +1,3 @@
 <?php 
-    echo("hello book-project!");
+    echo("Hello book-project!");
 ?>
