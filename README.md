@@ -8,7 +8,7 @@
    ~~~bash
    docker compose up -d
    ~~~
-2. http://localhost:8080/へ移動
+2. "http://localhost:8080/" へ移動
 
 ## テーブルの作成
 compose.yaml側で、コンテナ新規作成時にsqlファイルが自動実行される設定にしている。
