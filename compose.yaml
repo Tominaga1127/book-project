@@ -1,12 +1,16 @@
 services:
+  # コンテナ：イメージを元に動く実行環境（webはPHP・Apache用、dbはMySQL用）。
   web:
+    # イメージ：コンテナを作るためのひな形（PHP 8.4とApache入り）。
     image: php:8.4-apache
     ports:
       - "8080:80"
     volumes:
+      # バインドマウント：手元のpublicフォルダをコンテナ内の公開フォルダと共有する。
       - "./public:/var/www/html"
   
   db:
+    # MySQL 8.4入りのイメージを元に、DB用コンテナを作る。
     image: mysql:8.4
     environment:
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
@@ -14,7 +18,11 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     volumes:
+      # ボリューム：コンテナを削除してもDBデータを残せる、Docker管理の保存領域。
       - "db_data:/var/lib/mysql"
+      # コンテナ起動時に.sqlファイルを自動実行する設定
+      - "./database/:/docker-entrypoint-initdb.d/"
 
 volumes:
+  # DBデータの保存に使う名前付きボリュームを定義する。
   db_data:
