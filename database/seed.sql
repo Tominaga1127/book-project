@@ -1,3 +1,4 @@
+-- コンテナ新規作成時に登録される初期データ
 INSERT INTO books (title, total_pages, readed_pages) VALUES
 ('テストブック1', 230, 100), 
 ('テストブック2', 300, 300),
