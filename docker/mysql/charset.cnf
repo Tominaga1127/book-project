@@ -1,0 +1,7 @@
+# mysql / mysqldump client defaults
+[client]
+default-character-set=utf8mb4
+
+# Defaults for new databases and tables; existing data is unchanged.
+[mysqld]
+character-set-server=utf8mb4

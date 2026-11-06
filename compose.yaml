@@ -20,8 +20,10 @@ services:
     volumes:
       # ボリューム：コンテナを削除してもDBデータを残せる、Docker管理の保存領域。
       - "db_data:/var/lib/mysql"
-      # コンテナ新規作成時に.sqlファイルを自動実行する設定
+      # DB保存領域が空の初回起動時に、直下のSQLファイルを自動実行する。
       - "./database/:/docker-entrypoint-initdb.d/"
+      # 接続とサーバーの既定文字コードをUTF-8にする。
+      - "./docker/mysql/charset.cnf:/etc/mysql/conf.d/charset.cnf:ro"
 
 volumes:
   # DBデータの保存に使う名前付きボリュームを定義する。
