@@ -1,14 +1,23 @@
 services:
   # コンテナ：イメージを元に動く実行環境（webはPHP・Apache用、dbはMySQL用）。
   web:
-    # イメージ：コンテナを作るためのひな形（PHP 8.4とApache入り）。
-    image: php:8.4-apache
+    # PHP 8.4とApacheに、MySQL接続用の拡張を追加してビルドする。
+    # imageの設定をDockerfileに写し、ビルド段階でDockerfileに書かれてるイメージをコマンド付きで実行
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    environment:
+      DB_HOST: "db"
+      DB_NAME: "${MYSQL_DATABASE}"
+      DB_USER: "${MYSQL_USER}"
+      DB_PASSWORD: "${MYSQL_PASSWORD}"
     ports:
       - "8080:80"
     volumes:
       # バインドマウント：手元のpublicフォルダをコンテナ内の公開フォルダと共有する。
       - "./public:/var/www/html"
-  
+      - "./src:/var/www/src:ro"
+
   db:
     # MySQL 8.4入りのイメージを元に、DB用コンテナを作る。
     image: mysql:8.4
