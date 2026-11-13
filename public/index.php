@@ -1,6 +1,22 @@
 <?php
-// プロジェクト直下のsrcから本一覧の取得処理を読み込む。
-require_once dirname(__DIR__) . '/src/books.php';
+// 入口で接続・取得の例外を受け止め、利用者には短い案内だけを返す。
+try {
+    require_once dirname(__DIR__) . '/src/books.php';
+} catch (PDOException $exception) {
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=UTF-8');
+
+    // 認証情報を含み得る例外本文やトレースを避け、エラーコードと発生箇所を記録する。
+    error_log(sprintf(
+        'Book list database failure: code=%s file=%s line=%d',
+        $exception->getCode(),
+        $exception->getFile(),
+        $exception->getLine()
+    ));
+
+    echo '本一覧を取得できませんでした。しばらくしてから再度お試しください。';
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
