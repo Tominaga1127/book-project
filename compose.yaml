@@ -1,8 +1,9 @@
 services:
   # コンテナ：イメージを元に動く実行環境（webはPHP・Apache用、dbはMySQL用）。
   web:
+    image: php:8.4-apache
     # PHP 8.4とApacheに、MySQL接続用の拡張を追加してビルドする。
-    # imageの設定をDockerfileに写し、ビルド段階でDockerfileに書かれてるイメージをコマンド付きで実行
+    # imageはビルド結果の名前、元になるイメージはDockerfileのFROMで指定する。
     build:
       context: .
       dockerfile: docker/php/Dockerfile
