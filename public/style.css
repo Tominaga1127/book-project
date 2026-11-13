@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* 黒を基調に、文字と罫線で一覧を見やすくする。 */
+:root {
+    color-scheme: dark;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+    background: #101010;
+    color: #eeeeee;
+    line-height: 1.7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: min(100% - 64px, 1040px);
+    margin: 72px auto;
+}
+
+h1 {
+    margin: 0 0 32px;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    border: 1px solid #383838;
+    border-radius: 8px;
+    background: #171717;
+}
+
+.table-scroll:focus-visible {
+    outline: 2px solid #dedede;
+    outline-offset: 4px;
+}
+
+table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 20px 24px;
+    text-align: left;
+    border-bottom: 1px solid #303030;
+}
+
+th {
+    background: #202020;
+    color: #bfbfbf;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+td {
+    font-size: 0.9375rem;
+}
+
+th:first-child,
+td:first-child {
+    width: 72px;
+    color: #bfbfbf;
+}
+
+td:nth-child(2) {
+    overflow-wrap: anywhere;
+}
+
+th:nth-child(n + 3),
+td:nth-child(n + 3) {
+    width: 152px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* スマートフォンでは余白を縮め、表は列を保ったまま横スクロールする。 */
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 32px);
+        margin: 32px auto;
+    }
+
+    h1 {
+        margin-bottom: 24px;
+    }
+
+    th,
+    td {
+        padding: 16px;
+    }
+}
