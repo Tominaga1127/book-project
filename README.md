@@ -67,3 +67,7 @@ SELECT @@character_set_client,
   ~~~
   太字にならないことを確認済み
 - データベース接続が失敗したときのエラー処理を実装した。
+  DBが起動していなとき、以下のコマンドで "HTTP 500" が出ることを確認
+  ~~~bash
+  cutl -i http://localhost:8080/
+  ~~~
