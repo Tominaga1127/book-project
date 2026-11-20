@@ -90,7 +90,8 @@ try {
         </ul>
     <?php endif; ?>
     <!-- 題名と総ページ数を同じページへPOST送信する。読了ページ数はDBの初期値を使う。 -->
-    <form class="book-form" method="post" action="index.php">
+    <!-- ブラウザ標準の検証で送信を止めず、PHPで検証したエラーを表示する。 -->
+    <form class="book-form" method="post" action="index.php" novalidate>
         <div>
             <label for="title">題名</label>
             <input type="text" id="title" name="title" maxlength="255" value="<?= htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>" required>
