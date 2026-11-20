@@ -33,31 +33,31 @@ try {
     <?php if (empty($books)): ?>
         <p>本が登録されていません</p>
     <?php else: ?>
-    <!-- 狭い画面では表の部分だけを横にスクロールできる。 -->
-    <div class="table-scroll" role="region" aria-label="本一覧（横スクロール可能）" tabindex="0">
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">タイトル</th>
-                <th scope="col">総ページ数</th>
-                <th scope="col">読了ページ数</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php // 取得した本を1冊ずつ表の行として表示する。 ?>
-            <?php foreach ($books as $book): ?>
-                <tr>
-                    <?php // 特殊文字をエスケープし、UTF-8の文字として表示する。 ?>
-                    <td><?= htmlspecialchars((string) $book['id'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars((string) $book['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars((string) $book['total_pages'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars((string) $book['readed_pages'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    </div>
+        <!-- 狭い画面では表の部分だけを横にスクロールできる。 -->
+        <div class="table-scroll" role="region" aria-label="本一覧（横スクロール可能）" tabindex="0">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">タイトル</th>
+                        <th scope="col">総ページ数</th>
+                        <th scope="col">読了ページ数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php // 取得した本を1冊ずつ表の行として表示する。 ?>
+                    <?php foreach ($books as $book): ?>
+                        <tr>
+                            <?php // 特殊文字をエスケープし、UTF-8の文字として表示する。 ?>
+                            <td><?= htmlspecialchars((string) $book['id'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars((string) $book['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars((string) $book['total_pages'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars((string) $book['readed_pages'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     <?php endif; ?>
     </main>
 </body>
